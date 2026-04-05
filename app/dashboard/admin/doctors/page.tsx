@@ -57,7 +57,7 @@ export default function ApproveDoctorsPage() {
           </span>
         </div>
         <div className="flex-1">
-          <h3 className="font-semibold text-gray-900">Dr. {doctor.user?.full_name}</h3>
+          <h3 className="font-semibold text-gray-900">{doctor.user?.full_name}</h3>
           <p className="text-teal-600 text-sm font-medium">{doctor.specialty}</p>
           <p className="text-gray-400 text-xs mt-1">
             License: {doctor.license_number} · {doctor.experience_years} yrs exp

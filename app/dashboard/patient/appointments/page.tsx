@@ -129,7 +129,7 @@ export default function BookAppointmentPage() {
                     </span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-gray-900">Dr. {doctor.user?.full_name}</h3>
+                    <h3 className="font-semibold text-gray-900">{doctor.user?.full_name}</h3>
                     <p className="text-teal-600 text-sm font-medium">{doctor.specialty}</p>
                     <div className="flex items-center gap-3 mt-2 text-xs text-gray-500">
                       <span className="flex items-center gap-1">
