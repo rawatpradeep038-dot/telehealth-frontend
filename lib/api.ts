@@ -7,45 +7,45 @@ const getToken = () => {
   return null;
 };
 
-const headers = () => ({
-  'Content-Type': 'application/json',
-  ...(getToken() ? { Authorization: `Bearer ${getToken()}` } : {}),
-});
+const getHeaders = () => {
+  const token = getToken();
+  return {
+    'Content-Type': 'application/json',
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+  };
+};
 
 export const api = {
   post: async (endpoint: string, body: object) => {
     const res = await fetch(`${API_BASE_URL}${endpoint}`, {
       method: 'POST',
-      headers: headers(),
+      headers: getHeaders(),
       body: JSON.stringify(body),
     });
     if (!res.ok) throw await res.json();
     return res.json();
   },
-
   get: async (endpoint: string) => {
     const res = await fetch(`${API_BASE_URL}${endpoint}`, {
       method: 'GET',
-      headers: headers(),
+      headers: getHeaders(),
     });
     if (!res.ok) throw await res.json();
     return res.json();
   },
-
   patch: async (endpoint: string, body: object) => {
     const res = await fetch(`${API_BASE_URL}${endpoint}`, {
       method: 'PATCH',
-      headers: headers(),
+      headers: getHeaders(),
       body: JSON.stringify(body),
     });
     if (!res.ok) throw await res.json();
     return res.json();
   },
-
   delete: async (endpoint: string) => {
     const res = await fetch(`${API_BASE_URL}${endpoint}`, {
       method: 'DELETE',
-      headers: headers(),
+      headers: getHeaders(),
     });
     if (!res.ok) throw await res.json();
     return res.json();
