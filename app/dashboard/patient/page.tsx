@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { Heart, Calendar, FileText, User, LogOut, Bell, ChevronRight, Clock } from 'lucide-react';
+import { Heart, Calendar, FileText, User, LogOut, Bell, ChevronRight, Clock, Stethoscope } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function PatientDashboard() {
@@ -24,6 +24,7 @@ export default function PatientDashboard() {
 
   const cards = [
     { icon: Calendar, title: 'Book Appointment', desc: 'Find and book a doctor', color: 'bg-teal-50 text-teal-600', href: '/dashboard/patient/appointments' },
+    { icon: Stethoscope, title: 'AI Symptom Checker', desc: 'Check your symptoms with AI', color: 'bg-violet-50 text-violet-600', href: '/dashboard/patient/symptoms' },
     { icon: FileText, title: 'My Prescriptions', desc: 'View your prescriptions', color: 'bg-blue-50 text-blue-600', href: '/dashboard/patient/prescriptions' },
     { icon: Heart, title: 'Medical Records', desc: 'Your health history', color: 'bg-rose-50 text-rose-600', href: '/dashboard/patient/records' },
     { icon: User, title: 'My Profile', desc: 'Update your details', color: 'bg-purple-50 text-purple-600', href: '/dashboard/patient/profile' },
