@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { Heart, ArrowLeft, Calendar, User, Clock, CheckCircle, XCircle } from 'lucide-react';
+import { Heart, ArrowLeft, Calendar, User, Clock, CheckCircle, XCircle, Video } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { api } from '@/lib/api';
 
@@ -34,6 +34,10 @@ export default function DoctorAppointmentsPage() {
     } catch {
       alert('Failed to update status');
     }
+  };
+
+  const handleJoinCall = (appointmentId: string) => {
+    router.push(`/dashboard/video/${appointmentId}`);
   };
 
   const statusColor: any = {
@@ -118,14 +122,19 @@ export default function DoctorAppointmentsPage() {
 
                 {apt.status === 'confirmed' && (
                   <div className="flex gap-3">
-                    <Button onClick={() => handleStatus(apt.id, 'completed')}
-                      className="flex-1 gradient-primary text-white border-0 rounded-xl">
-                      <CheckCircle className="w-4 h-4 mr-2" /> Mark Complete
+                    <Button
+                      onClick={() => handleJoinCall(apt.id)}
+                      className="flex-1 gradient-primary text-white border-0 rounded-xl flex items-center justify-center gap-2">
+                      <Video className="w-4 h-4" /> Join Video Call
                     </Button>
                     <Button
                       onClick={() => router.push(`/dashboard/doctor/prescriptions?patientId=${apt.patient_id}&appointmentId=${apt.id}`)}
                       variant="outline" className="flex-1 rounded-xl">
                       Write Prescription
+                    </Button>
+                    <Button onClick={() => handleStatus(apt.id, 'completed')}
+                      variant="outline" className="rounded-xl border-teal-200 text-teal-600 hover:bg-teal-50">
+                      <CheckCircle className="w-4 h-4" />
                     </Button>
                   </div>
                 )}
