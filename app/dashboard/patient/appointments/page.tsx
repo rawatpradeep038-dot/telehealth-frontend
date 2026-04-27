@@ -242,13 +242,15 @@ export default function BookAppointmentPage() {
                         </div>
                       </div>
                       {apt.type === 'online' && apt.status !== 'completed' && (
-                        <Button
-                          onClick={() => handleJoinCall(apt.id)}
-                          className="gradient-primary text-white border-0 rounded-xl flex items-center gap-2"
-                        >
-                          <Video className="w-4 h-4" />
-                          Join Call
-                        </Button>
+                        <div className="flex gap-2">
+                          <Button
+                            onClick={() => router.push(`/dashboard/patient/payment/${apt.id}`)}
+                            className="gradient-primary text-white border-0 rounded-xl flex items-center gap-2"
+                          >
+                            <Video className="w-4 h-4" />
+                            Pay & Join
+                          </Button>
+                        </div>
                       )}
                     </div>
                   </motion.div>
