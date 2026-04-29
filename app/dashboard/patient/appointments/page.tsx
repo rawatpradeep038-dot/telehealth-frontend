@@ -34,13 +34,14 @@ export default function BookAppointmentPage() {
   };
 
   const fetchMyAppointments = async () => {
-    try {
-      const data = await api.get('/appointments/my');
-      setMyAppointments(data);
-    } catch {
-      setMyAppointments([]);
-    }
-  };
+  try {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const data = await api.get(`/appointments/patient/${user.id}`);
+    setMyAppointments(data);
+  } catch {
+    setMyAppointments([]);
+  }
+};
 
   const handleBook = async (doctorUserId: string) => {
     setBooking(doctorUserId);
