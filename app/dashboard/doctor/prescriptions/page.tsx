@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Heart, ArrowLeft, Plus, Trash2, Save } from 'lucide-react';
@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { api } from '@/lib/api';
 
-export default function WritePrescriptionPage() {
+function WritePrescriptionPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const patientId = searchParams.get('patientId') || '';
@@ -95,7 +95,6 @@ export default function WritePrescriptionPage() {
           <p className="text-gray-500">Add medications and instructions for your patient</p>
         </motion.div>
 
-        {/* Medications */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
           className="bg-white rounded-2xl border border-gray-100 p-6 mb-6">
@@ -139,7 +138,6 @@ export default function WritePrescriptionPage() {
           </div>
         </motion.div>
 
-        {/* Instructions */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
           className="bg-white rounded-2xl border border-gray-100 p-6 mb-6">
@@ -160,5 +158,13 @@ export default function WritePrescriptionPage() {
         </Button>
       </div>
     </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <WritePrescriptionPage />
+    </Suspense>
   );
 }
